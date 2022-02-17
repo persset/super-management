@@ -41,3 +41,15 @@ Route::prefix("/app")->group(function () {
         return "Products";
     })->name("app.products");
 });
+
+Route::get("/teste", function () {
+    echo "Rota 1";
+})->name("site.teste");
+
+Route::get("/teste2", function () {
+    return redirect()->route("site.teste");
+})->name("site.teste2");
+
+Route::fallback(function () {
+    echo "A rota acessada não foi encontrada.<a href='/'>Clique aqui para voltar ao inicio</a>";
+});
