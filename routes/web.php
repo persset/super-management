@@ -16,26 +16,28 @@ use App\Http\Controllers\ContactController;
 |
 */
 
-Route::get("/", [MainController::class, "main"]);
+Route::get("/", [MainController::class, "main"])->name("site.index");
 
-Route::get("/about", [AboutController::class, "about"]);
+Route::get("/about", [AboutController::class, "about"])->name("site.about");
 
-Route::get("/contact", [ContactController::class, "contact"]);
+Route::get("/contact", [ContactController::class, "contact"])->name(
+    "site.contact"
+);
 
 Route::get("/login", function () {
     return "Login";
-});
+})->name("site.login");
 
 Route::prefix("/app")->group(function () {
     Route::get("/clients", function () {
         return "Clients";
-    });
+    })->name("app.clients");
 
     Route::get("/providers", function () {
         return "Providers";
-    });
+    })->name("app.providers");
 
     Route::get("/products", function () {
         return "Products";
-    });
+    })->name("app.products");
 });
