@@ -1,5 +1,7 @@
 @extends("site.layouts.basicLayout")
 
+@section("title", 'Super Gestão')
+
 @section("content")
 <div class="header">
 

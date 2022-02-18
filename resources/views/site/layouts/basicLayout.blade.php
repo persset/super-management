@@ -2,7 +2,7 @@
 <html lang="pt-br">
 
 <head>
-    <title>Super Gestão - Sobre Nós</title>
+    <title>@yield('title')</title>
     <meta charset="utf-8">
     <link href="{{ asset('css/baseStyle.css') }}" rel="stylesheet">
 </head>

@@ -1,5 +1,7 @@
 @extends('site.layouts.basicLayout')
 
+@section("title", 'Sobre Nós')
+
 @section('content')
 <div class="header">
 
