@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\ProviderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,9 +34,9 @@ Route::prefix("/app")->group(function () {
         return "Clients";
     })->name("app.clients");
 
-    Route::get("/providers", function () {
-        return "Providers";
-    })->name("app.providers");
+    Route::get("/providers", [ProviderController::class, "index"])->name(
+        "app.providers"
+    );
 
     Route::get("/products", function () {
         return "Products";
