@@ -3,20 +3,6 @@
 @section("title", 'Contato')
 
 @section("content")
-<div class="header">
-
-    <div class="logo">
-        <img src={{ asset("img/logo.png") }}>
-    </div>
-
-    <div class="menu">
-        <ul>
-            <li><a href="{{ route('site.index') }}">Principal</a></li>
-            <li><a href="{{ route('site.about') }}">Sobre Nós</a></li>
-            <li><a href="{{ route('site.contact') }}">Contato</a></li>
-        </ul>
-    </div>
-</div>
 
 <div class="page-content">
     <div class="page-title">
@@ -25,21 +11,22 @@
 
     <div class="page-info">
         <div class="main-contact">
-            <form>
-                <input type="text" placeholder="Nome" class="black-border">
+            <form action={{ route('site.contact') }} method="post">
+                @csrf
+                <input name="name" type="text" placeholder="Nome" class="black-border">
                 <br>
-                <input type="text" placeholder="Telefone" class="black-border">
+                <input name="phone" type="text" placeholder="Telefone" class="black-border">
                 <br>
-                <input type="text" placeholder="E-mail" class="black-border">
+                <input name="email" type="email" placeholder="E-mail" class="black-border">
                 <br>
-                <select class="black-border">
+                <select name="contact-subject" class="black-border">
                     <option value="">Qual o motivo do contato?</option>
                     <option value="">Dúvida</option>
                     <option value="">Elogio</option>
                     <option value="">Reclamação</option>
                 </select>
                 <br>
-                <textarea class="black-border">Preencha aqui a sua mensagem</textarea>
+                <textarea name="message" class="black-border">Preencha aqui a sua mensagem</textarea>
                 <br>
                 <button type="submit" class="black-border">ENVIAR</button>
             </form>

@@ -25,6 +25,10 @@ Route::get("/contact", [ContactController::class, "contact"])->name(
     "site.contact"
 );
 
+Route::post("/contact", [ContactController::class, "contact"])->name(
+    "site.contact"
+);
+
 Route::get("/login", function () {
     return "Login";
 })->name("site.login");
