@@ -31,24 +31,8 @@
             <h1>Contato</h1>
             <p>Caso tenha qualquer dúvida por favor entre em contato com nossa equipe pelo formulário abaixo.
             <p>
-            <form>
-                <input type="text" placeholder="Nome" class="white-border">
-                <br>
-                <input type="text" placeholder="Telefone" class="white-border">
-                <br>
-                <input type="text" placeholder="E-mail" class="white-border">
-                <br>
-                <select class="white-border">
-                    <option value="">Qual o motivo do contato?</option>
-                    <option value="">Dúvida</option>
-                    <option value="">Elogio</option>
-                    <option value="">Reclamação</option>
-                </select>
-                <br>
-                <textarea class="white-border">Preencha aqui a sua mensagem</textarea>
-                <br>
-                <button type="submit" class="white-border">ENVIAR</button>
-            </form>
+                @component("site.layouts._components.contactForm")
+                @endcomponent
         </div>
     </div>
 </div>
