@@ -15,12 +15,14 @@ class SiteContactSeeder extends Seeder
      */
     public function run()
     {
-        $contact = new SiteContact();
+        /*$contact = new SiteContact();
         $contact->name = 'Sistema SG';
         $contact->phone = '(11) 91234-5678';
         $contact->email = 'contato@sg.com.br';
         $contact->contact_subject = '1';
         $contact->message = 'Bem-vindo ao sistema Super Gestão';
-        $contact->save();
+        $contact->save();*/
+
+        \App\Models\SiteContact::factory(100)->create();
     }
 }
