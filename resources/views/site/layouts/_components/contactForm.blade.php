@@ -10,9 +10,9 @@
     <br>
     <select name=" contact_subject" class="{{$class}}">
     <option value="">Qual o motivo do contato?</option>
-    <option value="1">Dúvida</option>
-    <option value="2">Elogio</option>
-    <option value="3">Reclamação</option>
+    @foreach($contact_subjects as $subject => $contact_subject)
+    <option value="{{$subject}}" {{ old('contact_subject')==$subject ? 'selected' : '' }}>{{$contact_subject}}</option>
+    @endforeach
     </select>
     <br>
     <textarea name="message" class="{{$class}}"

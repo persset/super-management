@@ -9,7 +9,14 @@ class ContactController extends Controller
 {
     public function contact() {
         //var_dump($_POST);
-        return view('site.contact');
+
+        $contact_subjects = [
+            '1' => 'Duvida',
+            '2' => 'Elogio',
+            '3' => 'Reclamação',
+        ];
+
+        return view('site.contact', ['contact_subjects' => $contact_subjects]);
     }
 
     public function saveContact(Request $request) {
