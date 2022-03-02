@@ -14,11 +14,11 @@ class ContactController extends Controller
 
     public function saveContact(Request $request) {
         $request->validate([
-            'name' => 'required',
+            'name' => 'required|min:2|max:140',
             'phone' => 'required',
             'email' => 'required',
             'contact_subject' => 'required',
-            'message' => 'required'
+            'message' => 'required|max:2000'
         ]);
 
         SiteContact::create($request->all());
