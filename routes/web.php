@@ -25,7 +25,7 @@ Route::get("/contact", [ContactController::class, "contact"])->name(
     "site.contact"
 );
 
-Route::post("/contact", [ContactController::class, "contact"])->name(
+Route::post("/contact", [ContactController::class, "saveContact"])->name(
     "site.contact"
 );
 
