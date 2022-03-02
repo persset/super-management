@@ -10,8 +10,9 @@
     <br>
     <select name=" contact_subject" class="{{$class}}">
     <option value="">Qual o motivo do contato?</option>
-    @foreach($contact_subjects as $subject => $contact_subject)
-    <option value="{{$subject}}" {{ old('contact_subject')==$subject ? 'selected' : '' }}>{{$contact_subject}}</option>
+    @foreach($contact_subjects as $key => $contact_subject)
+    <option value="{{$contact_subject->id}}" {{ old('contact_subject')==$contact_subject->id ? 'selected' : ''
+        }}>{{$contact_subject->subject}}</option>
     @endforeach
     </select>
     <br>
