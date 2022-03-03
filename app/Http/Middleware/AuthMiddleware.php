@@ -4,9 +4,8 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use App\Models\AccessLog;
 
-class AccessLogMiddleware
+class AuthMiddleware
 {
     /**
      * Handle an incoming request.
@@ -17,14 +16,7 @@ class AccessLogMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-
-        $ip = $request->server->get('REMOTE_ADDR');
-        $route = $request->getRequestUri();
-        
-        AccessLog::create(['log' => "O IP: $ip requisitou a seguinte rota: $route"]);
-
-        return $next($request);
-        
-        return Response('Chegamos ao middlware');
+        //return $next($request);
+        return Response("Acesso negado! A rota necessita de autenticação para ser acessada!");
     }
 }

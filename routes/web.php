@@ -34,7 +34,7 @@ Route::get("/login", function () {
     return "Login";
 })->name("site.login");
 
-Route::prefix("/app")->group(function () {
+Route::middleware('auth.md')->prefix("/app")->group(function () {
     Route::get("/clients", function () {
         return "Clients";
     })->name("app.clients");

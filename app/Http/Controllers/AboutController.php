@@ -3,12 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Middleware\AccessLogMiddleware;
 
 class AboutController extends Controller
 {
     public function __construct() {
-        $this->middleware(AccessLogMiddleware::class);
+        //$this->middleware("access.log");
     }
 
     public function About() {
