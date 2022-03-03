@@ -18,17 +18,17 @@ use App\Http\Middleware\AccessLogMiddleware;
 |
 */
 
-Route::middleware(AccessLogMiddleware::class)
-    ->get("/", [MainController::class, "main"])
+Route::get("/", [MainController::class, "main"])
     ->name("site.index");
 
-Route::get("/about", [AboutController::class, "about"])->name("site.about");
+Route::get("/about", [AboutController::class, "about"])
+    ->name("site.about");
 
-Route::get("/contact", [ContactController::class, "contact"])->name("site.contact")->middleware(AccessLogMiddleware::class);
+Route::get("/contact", [ContactController::class, "contact"])
+    ->name("site.contact");
 
-Route::post("/contact", [ContactController::class, "saveContact"])->name(
-    "site.contact"
-);
+Route::post("/contact", [ContactController::class, "saveContact"])
+    ->name("site.contact");
 
 Route::get("/login", function () {
     return "Login";
