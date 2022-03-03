@@ -5,6 +5,7 @@ use App\Http\Controllers\MainController;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProviderController;
+use App\Http\Middleware\AccessLogMiddleware;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,9 +18,11 @@ use App\Http\Controllers\ProviderController;
 |
 */
 
-Route::get("/", [MainController::class, "main"])->name("site.index");
+Route::middleware(AccessLogMiddleware::class)
+    ->get("/", [MainController::class, "main"])
+    ->name("site.index");
 
-Route::get("/about", [AboutController::class, "about"])->name("site.about");
+Route::get("/about", [AboutController::class, "about"])->name("site.about")->middleware(AccessLogMiddleware::class);
 
 Route::get("/contact", [ContactController::class, "contact"])->name(
     "site.contact"
