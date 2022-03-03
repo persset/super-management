@@ -22,11 +22,9 @@ Route::middleware(AccessLogMiddleware::class)
     ->get("/", [MainController::class, "main"])
     ->name("site.index");
 
-Route::get("/about", [AboutController::class, "about"])->name("site.about")->middleware(AccessLogMiddleware::class);
+Route::get("/about", [AboutController::class, "about"])->name("site.about");
 
-Route::get("/contact", [ContactController::class, "contact"])->name(
-    "site.contact"
-);
+Route::get("/contact", [ContactController::class, "contact"])->name("site.contact")->middleware(AccessLogMiddleware::class);
 
 Route::post("/contact", [ContactController::class, "saveContact"])->name(
     "site.contact"
