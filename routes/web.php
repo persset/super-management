@@ -6,6 +6,7 @@ use App\Http\Controllers\AboutController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProviderController;
 use App\Http\Middleware\AccessLogMiddleware;
+use App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,11 +31,13 @@ Route::get("/contact", [ContactController::class, "contact"])
 Route::post("/contact", [ContactController::class, "saveContact"])
     ->name("site.contact");
 
-Route::get("/login", function () {
-    return "Login";
-})->name("site.login");
+Route::get("/login", [LoginController::class, "index"])
+    ->name("site.login");
 
-Route::middleware('auth.md')->prefix("/app")->group(function () {
+Route::post("/login", [LoginController::class, "login"])
+    ->name("site.login");
+
+Route::middleware('auth.md:ungabunga')->prefix("/app")->group(function () {
     Route::get("/clients", function () {
         return "Clients";
     })->name("app.clients");

@@ -23,8 +23,10 @@ class AccessLogMiddleware
         
         AccessLog::create(['log' => "O IP: $ip requisitou a seguinte rota: $route"]);
 
-        return $next($request);
-        
-        return Response('Chegamos ao middlware');
+        //return $next($request);
+
+        $response = $next($request);
+
+        return $response;
     }
 }

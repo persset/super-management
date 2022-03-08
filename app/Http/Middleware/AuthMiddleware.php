@@ -14,9 +14,20 @@ class AuthMiddleware
      * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
-    public function handle(Request $request, Closure $next)
+    public function handle(Request $request, Closure $next, $authMethod)
     {
-        //return $next($request);
-        return Response("Acesso negado! A rota necessita de autenticação para ser acessada!");
+        echo $authMethod.'<br>';
+
+        if ($authMethod == 'default') {
+            echo 'Verificar usuário e senha no db'.'<br>';
+        } else {
+            echo 'Verificar usuário e senha no AD'.'<br>';
+        }
+
+        if(false) {
+            return $next($request);
+        } else {
+            return Response("Acesso negado! A rota necessita de autenticação para ser acessada!");
+        }   
     }
 }
