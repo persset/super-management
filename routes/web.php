@@ -1,12 +1,18 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+
+use App\Http\Middleware\AccessLogMiddleware;
+
+
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProviderController;
-use App\Http\Middleware\AccessLogMiddleware;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ClientController;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,17 +44,15 @@ Route::post("/login", [LoginController::class, "login"])
     ->name("site.login");
 
 Route::middleware('auth.md:ungabunga')->prefix("/app")->group(function () {
-    Route::get("/clients", function () {
-        return "Clients";
-    })->name("app.clients");
+    Route::get("/home", [HomeController::class, 'index'])->name("app.home");
 
-    Route::get("/providers", [ProviderController::class, "index"])->name(
-        "app.providers"
-    );
+    Route::get("/logout", [LoginController::class, 'logout'])->name("app.logout");
 
-    Route::get("/products", function () {
-        return "Products";
-    })->name("app.products");
+    Route::get("/client", [ClientController::class, 'index'])->name("app.client");
+
+    Route::get("/provider", [ProviderController::class, "index"])->name("app.provider");
+
+    Route::get("/product", [ProductController::class, "index"])->name("app.product");
 });
 
 Route::get("/teste", function () {

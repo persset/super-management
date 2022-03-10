@@ -16,18 +16,12 @@ class AuthMiddleware
      */
     public function handle(Request $request, Closure $next, $authMethod)
     {
-        echo $authMethod.'<br>';
+        session_start();
 
-        if ($authMethod == 'default') {
-            echo 'Verificar usuário e senha no db'.'<br>';
-        } else {
-            echo 'Verificar usuário e senha no AD'.'<br>';
-        }
-
-        if(false) {
+        if(isset($_SESSION['email']) && $_SESSION['email'] != '') {
             return $next($request);
         } else {
-            return Response("Acesso negado! A rota necessita de autenticação para ser acessada!");
-        }   
+            return redirect()->route('site.login', ['error' => 2]);
+        }
     }
 }

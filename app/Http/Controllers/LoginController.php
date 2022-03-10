@@ -13,6 +13,11 @@ class LoginController extends Controller
         if($request->get('error') == 1) {
             $error = 'Parâmetros não batem com nenhum dado cadastrado.';
         }
+
+        if($request->get('error') == 2) {
+            $error = 'É necessário autenticação para acessar a página.';
+        }
+        
         return view('site.login', ['error' => $error]);
     }
 
@@ -35,18 +40,23 @@ class LoginController extends Controller
         $email = $request->get('username');
         $password = $request->get('password');
 
-        echo "Username: $email | Senha: $password";
-        echo '<br />';
-
         //Initiate  User Model object
-        $user = new User();
+        $userModel = new User();
 
-        $exists = $user->where('email', $email)->where('password', $password)->get()->first();
+        $user = $userModel->where('email', $email)->where('password', $password)->get()->first();
         
-        if(isset($exists->name)) {
-            echo 'Usuário existe';
+        if(isset($user->name)) {
+            session_start();
+            $_SESSION['name'] = $user->name;
+            $_SESSION['email'] = $user->email;
+
+            return redirect()->route('app.home');
         } else {
             return redirect()->route('site.login', ['error' => 1]);
         }
+    }
+
+    public function logout() {
+        return 'Logout';
     }
 }
