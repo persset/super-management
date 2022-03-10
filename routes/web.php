@@ -51,6 +51,10 @@ Route::middleware('auth.md:ungabunga')->prefix("/app")->group(function () {
     Route::get("/client", [ClientController::class, 'index'])->name("app.client");
 
     Route::get("/provider", [ProviderController::class, "index"])->name("app.provider");
+    Route::post("/provider/list", [ProviderController::class, "list"])->name("app.provider.list");
+    Route::get("/provider/create", [ProviderController::class, "create"])->name("app.provider.create");
+    Route::post("/provider/create", [ProviderController::class, "create"])->name("app.provider.create");
+    
 
     Route::get("/product", [ProductController::class, "index"])->name("app.product");
 });
