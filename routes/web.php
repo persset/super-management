@@ -31,7 +31,7 @@ Route::get("/contact", [ContactController::class, "contact"])
 Route::post("/contact", [ContactController::class, "saveContact"])
     ->name("site.contact");
 
-Route::get("/login", [LoginController::class, "index"])
+Route::get("/login/{error?}", [LoginController::class, "index"])
     ->name("site.login");
 
 Route::post("/login", [LoginController::class, "login"])

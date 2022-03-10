@@ -7,8 +7,13 @@ use App\Models\User;
 
 class LoginController extends Controller
 {
-    public function index() {
-        return view('site.login');
+    public function index(Request $request) {
+        $error = '';
+
+        if($request->get('error') == 1) {
+            $error = 'Parâmetros não batem com nenhum dado cadastrado.';
+        }
+        return view('site.login', ['error' => $error]);
     }
 
     public function login(Request $request) {
@@ -41,7 +46,7 @@ class LoginController extends Controller
         if(isset($exists->name)) {
             echo 'Usuário existe';
         } else {
-            echo 'Usuário não existe';
+            return redirect()->route('site.login', ['error' => 1]);
         }
     }
 }
