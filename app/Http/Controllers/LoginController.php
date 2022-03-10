@@ -57,6 +57,8 @@ class LoginController extends Controller
     }
 
     public function logout() {
-        return 'Logout';
+        session_destroy();
+
+        return redirect()->route('site.index');
     }
 }
