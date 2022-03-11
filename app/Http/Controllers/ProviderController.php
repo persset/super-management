@@ -25,7 +25,8 @@ class ProviderController extends Controller {
     public function create(Request $request) {
         $msg = '';
 
-        if($request->input('_token') != '') {
+        // Include routine
+        if($request->input('_token') != '' && $request->id == '') {
             $rules = [
                 'name' => 'required|min:2',
                 'site' => 'required',
@@ -48,6 +49,26 @@ class ProviderController extends Controller {
 
             $msg = "Cadastro realizado com sucesso!";
         }
+
+        //Edit routine
+        if($request->input('_token') != '' && $request->id != '') { 
+            $provider = Provider::find($request->input('id'));
+            $updateSuccess = $provider->update($request->all());
+
+            if($updateSuccess) {
+                $msg =  'As alterações foram realizadas com sucesso!';
+            } else {
+                $msg = 'Ocorreu um problema ao realizar suas alterações!';
+            }
+
+            return redirect()->route('app.provider.edit', ['id' => $request->input('id'), 'msg' => $msg]);
+        }
         return view('app.provider.create', ['msg' => $msg]);
+    }
+
+    public function edit($id, $msg = '') {
+        $provider = Provider::find($id);
+
+        return view('app.provider.create', ['provider' => $provider, 'msg' => $msg]);
     }
 }

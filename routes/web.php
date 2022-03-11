@@ -54,6 +54,7 @@ Route::middleware('auth.md:ungabunga')->prefix("/app")->group(function () {
     Route::post("/provider/list", [ProviderController::class, "list"])->name("app.provider.list");
     Route::get("/provider/create", [ProviderController::class, "create"])->name("app.provider.create");
     Route::post("/provider/create", [ProviderController::class, "create"])->name("app.provider.create");
+    Route::get("/provider/edit/{id}/{msg?}", [ProviderController::class, "edit"])->name("app.provider.edit");
     
 
     Route::get("/product", [ProductController::class, "index"])->name("app.product");
